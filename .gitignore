@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# dev-dependencies
+db.json
+
 # testing
 /coverage
 
