@@ -70,15 +70,6 @@ export default function Home() {
             <li>
               <a href="#price">{t("price")}</a>
             </li>
-
-            <ul className="flex item-center gap-2 px-1.5 rounded-md bg-slate-500/20 opacity-70">
-              <li>
-                <Link href="en">en</Link>
-              </li>
-              <li>
-                <Link href="pt">pt</Link>
-              </li>
-            </ul>
           </ul>
         </header>
 
