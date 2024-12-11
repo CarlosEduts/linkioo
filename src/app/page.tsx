@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -35,7 +35,7 @@ export default function Home() {
       .then((data) => {
         data.error
           ? messageBox(data.error)
-          : setShortenedUrl(`${linkiooURL}/en/${data.post.key}`);
+          : setShortenedUrl(`${linkiooURL}/${data.post.key}`);
       });
   }
 

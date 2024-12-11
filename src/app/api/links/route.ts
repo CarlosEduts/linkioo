@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 
   function generateKey(lenght: number): string {
     const chars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-";
     let key = "";
 
     for (let i = 0; i < lenght; i++) {
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
 
   try {
     const { link } = await req.json();
-    const key = generateKey(10);
+    const key = generateKey(8);
 
     if (!key || !link) {
       return NextResponse.json(
