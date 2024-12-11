@@ -7,6 +7,10 @@
     "form-button": "Encurtar URL",
     "form-result": "Link encurtado",
     "about-content": "Linkioo é a solução ideal para quem busca praticidade e eficiência ao compartilhar links. Com uma interface simples e intuitiva, você pode encurtar URLs longas em apenas alguns segundos e acompanhar seus links de forma organizada.",
-    "price-content": "Grátis: Todas as funcionalidades essenciais disponíveis sem custo."
+    "price-content": "Grátis: Todas as funcionalidades essenciais disponíveis sem custo.",
+    "language": "Idioma"
+  },
+  "Redirect": {
+    "title":"Redirecionando..."
   }
 }
