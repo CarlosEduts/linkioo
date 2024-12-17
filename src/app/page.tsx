@@ -23,6 +23,9 @@ export default function Home() {
       return;
     }
 
+    // Indicador de link em processamento
+    setShortenedUrl(" . . .");
+
     fetch("/api/links", {
       method: "POST",
       headers: {
