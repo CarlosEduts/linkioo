@@ -12,7 +12,7 @@ export default function Home() {
 
   function messageBox(message: string) {
     setMessage(message);
-    setTimeout(() => setMessage(""), 5000);
+    setTimeout(() => setMessage(""), 3000);
   }
 
   async function handleShortenUrl(event: React.FormEvent<HTMLFormElement>) {
@@ -45,24 +45,17 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center px-4 pb-8">
-      <div className="w-[100%] max-w-[800px]">
+      <div className="w-full max-w-[800px]">
         {/* Header */}
-        <header className="flex items-center justify-between h-20">
+        <header className="flex items-center justify-between h-20 mb-4">
           {/* Header Logo */}
           <div className="flex items-center justify-center gap-1">
             <Image
               src="/Linkioo-logo.png"
-              width={200}
-              height={150}
+              width={80}
+              height={80}
               alt="Linkioo"
               className="w-10 rounded-lg"
-            />
-            <Image
-              src="/Linkioo-text.png"
-              width={200}
-              height={20}
-              alt="Linkioo"
-              className="w-20 rounded-lg"
             />
           </div>
 
@@ -79,95 +72,98 @@ export default function Home() {
 
         {/* Main */}
         <main className="flex flex-col">
-          {/* Title and subtitle */}
-          <div className="flex flex-col items-center justify-center pt-12 pb-8 text-center">
-            {/* Main Logo */}
-            <div className="flex flex-col items-center justify-center">
+          {/* Title and subtitle / Form*/}
+          <div className="flex flex-col text-center gap-4 px-4 py-8  bg-slate-400/15 rounded-md">
+            <div className="flex gap-1 items-center justify-center">
               <Image
                 src="/Linkioo-logo.png"
-                width={400}
-                height={150}
+                width={200}
+                height={100}
                 alt="Linkioo"
-                className="w-40 rounded-lg"
+                className="w-14 rounded-lg"
               />
               <Image
                 src="/Linkioo-text.png"
                 width={200}
-                height={20}
+                height={100}
                 alt="Linkioo"
                 className="w-28 rounded-lg"
               />
             </div>
-            <p>{t("subtitle")}</p>
-          </div>
+            <div className="flex items-center justify-center">
+              <p className="max-w-80">{t("subtitle")}</p>
+            </div>
 
-          {/* Form */}
-          <div className="flex items-center flex-col">
-            <div className="flex items-center flex-col gap-3 justify-center w-[100%] max-w-96 px-2 py-4 border border-[--foreground] rounded-md">
-              {/* Error result */}
-              {message ? (
-                <div className="w-[100%] p-1 rounded-md bg-red-500/20 text-red-600">
-                  {message}
-                </div>
-              ) : (
-                ""
-              )}
+            {/* Form */}
+            <div className="flex items-center flex-col">
+              <div className="flex items-center flex-col gap-3 justify-center w-full max-w-96 px-2 py-4 border border-[--foreground] rounded-md">
+                {/* Error result */}
+                {message ? (
+                  <div className="w-full p-1 rounded-md bg-red-500/20 text-red-600">
+                    {message}
+                  </div>
+                ) : (
+                  ""
+                )}
 
-              <form
-                onSubmit={handleShortenUrl}
-                className="flex flex-col gap-3 w-[100%] "
-              >
-                <input
-                  type="url"
-                  name=""
-                  id=""
-                  placeholder={t("form-input")}
-                  onChange={(e) => setUserUrl(e.target.value)}
-                  value={userUrl}
-                  className="w-[100%] border-2 border-violet-80 p-1 rounded-md bg-slate-500/20"
-                />
-                <button
-                  type="submit"
-                  className="w-[100%] bg-violet-800 text-white p-1 rounded-md"
+                <form
+                  onSubmit={handleShortenUrl}
+                  className="flex flex-col gap-3 w-full "
                 >
-                  {t("form-button")}
-                </button>
-              </form>
+                  <input
+                    type="url"
+                    name=""
+                    id=""
+                    placeholder={t("form-input")}
+                    onChange={(e) => setUserUrl(e.target.value)}
+                    value={userUrl}
+                    className="w-full border-2 border-violet-80 p-1 rounded-md bg-slate-500/20"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full bg-violet-800 text-white p-1 rounded-md"
+                  >
+                    {t("form-button")}
+                  </button>
+                </form>
 
-              {/* Url result */}
-              {shortenedUrl ? (
-                <div
-                  onClick={() => {
-                    navigator.clipboard.writeText(shortenedUrl);
-                  }}
-                  className="w-[100%] border-2 border-violet-80 p-1 rounded-md bg-slate-500/20 hover:bg-slate-500/40 text-slate-600"
-                >
-                  {shortenedUrl}
-                </div>
-              ) : (
-                ""
-              )}
+                {/* Url result */}
+                {shortenedUrl ? (
+                  <div
+                    onClick={() => {
+                      navigator.clipboard.writeText(shortenedUrl);
+                    }}
+                    className="w-full border-2 border-violet-80 p-1 rounded-md bg-slate-500/20 hover:bg-slate-500/40 text-slate-600"
+                  >
+                    {shortenedUrl}
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </div>
 
           {/* Infos */}
           <div className="flex flex-col items-center justify-center">
             {/* About project */}
-            <div className="mt-12 w-[100%] max-w-lg" id="about">
+            <div
+              className="mt-8 w-full  px-4 py-8  bg-slate-400/15 rounded-md"
+              id="about"
+            >
               <div>
-                <h2 className="text-xl text-violet-900 font-bold">
-                  {t("about")}
-                </h2>
+                <h2 className="text-xl font-bold">{t("about")}</h2>
                 <p className="opacity-60">{t("about-content")}</p>
               </div>
             </div>
 
             {/* Price */}
-            <div className="mt-12 w-[100%] max-w-lg" id="price">
+            <div
+              className="mt-8 w-full px-4 py-8  bg-slate-400/15 rounded-md"
+              id="price"
+            >
               <div>
-                <h2 className="text-xl text-violet-900 font-bold">
-                  {t("price")}
-                </h2>
+                <h2 className="text-xl font-bold">{t("price")}</h2>
                 <p className="opacity-60">{t("price-content")}</p>
               </div>
             </div>
