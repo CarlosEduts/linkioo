@@ -8,7 +8,7 @@ export default function Home() {
   const [userUrl, setUserUrl] = useState("");
   const [shortenedUrl, setShortenedUrl] = useState("");
   const [message, setMessage] = useState("");
-  const linkiooURL = window.location.origin;
+  const linkiooURL = "https://lkoo.xyz"
 
   function messageBox(message: string) {
     setMessage(message);
