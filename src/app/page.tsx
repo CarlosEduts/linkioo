@@ -1,6 +1,5 @@
 "use client";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,6 +36,8 @@ export default function Home() {
           ? messageBox(data.error)
           : setShortenedUrl(`${linkiooURL}/${data.post.key}`);
       });
+
+    setUserUrl("");
   }
 
   return (
@@ -119,6 +120,7 @@ export default function Home() {
                   id=""
                   placeholder={t("form-input")}
                   onChange={(e) => setUserUrl(e.target.value)}
+                  value={userUrl}
                   className="w-[100%] border-2 border-violet-80 p-1 rounded-md bg-slate-500/20"
                 />
                 <button
@@ -128,9 +130,15 @@ export default function Home() {
                   {t("form-button")}
                 </button>
               </form>
+
               {/* Url result */}
               {shortenedUrl ? (
-                <div className="w-[100%] border-2 border-violet-80 p-1 rounded-md bg-slate-500/20 text-slate-600">
+                <div
+                  onClick={() => {
+                    navigator.clipboard.writeText(shortenedUrl);
+                  }}
+                  className="w-[100%] border-2 border-violet-80 p-1 rounded-md bg-slate-500/20 hover:bg-slate-500/40 text-slate-600"
+                >
                   {shortenedUrl}
                 </div>
               ) : (
