@@ -1,7 +1,7 @@
 # Linkioo - Encurtador de Links
 
 
-Lkoo é um encurtador de links simples, rápido e eficiente, desenvolvido com **Next.js**. Com ele, você pode transformar URLs longas em links curtos e fáceis de compartilhar.
+Linkioo é um encurtador de links simples, rápido e eficiente. Com ele, você pode transformar URLs longas em links curtos e fáceis de compartilhar.
 
 ## 🌐 Demonstração
 
@@ -20,13 +20,7 @@ Veja a aplicação em funcionamento aqui: **[www.lkoo.xyz](https://www.lkoo.xyz/
 
 O projeto utiliza as seguintes tecnologias:
 
-- **Next.js**: Framework para aplicações React com renderização do lado do servidor.
-- **TypeScript**: Tipagem estática para um código mais robusto.
-- **next-intl**: Suporte a internacionalização (Idiomas: EN, PT).
-- **MongoDB Atlas**: Banco de dados NoSQL em nuvem.
-- **TailwindCSS**: Estilização rápida e eficiente com classes utilitárias.
-- **Vercel**: Hospedagem para projetos front-end e SSR (Server-Side Rendering).
-
+- **Next.js**, **TypeScript**, **next-intl(Idiomas: EN, PT)**, **MongoDB Atlas**, **TailwindCSS**, **Vercel**
 ---
 
 ## 👨‍💻 Desenvolvedor
