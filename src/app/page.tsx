@@ -8,11 +8,19 @@ export default function Home() {
   const [userUrl, setUserUrl] = useState("");
   const [shortenedUrl, setShortenedUrl] = useState("");
   const [message, setMessage] = useState("");
+  const [copyButton, setCopyButton] = useState(t("form-copy"));
   const linkiooURL = "https://lkoo.xyz";
 
   function messageBox(message: string) {
     setMessage(message);
     setTimeout(() => setMessage(""), 3000);
+  }
+
+  function copyContent() {
+    navigator.clipboard.writeText(shortenedUrl);
+    setCopyButton(t("form-copied"));
+
+    setTimeout(() => setCopyButton(t("form-copy")), 3000);
   }
 
   async function handleShortenUrl(event: React.FormEvent<HTMLFormElement>) {
@@ -135,11 +143,11 @@ export default function Home() {
                     </div>
                     <button
                       onClick={() => {
-                        navigator.clipboard.writeText(shortenedUrl);
+                        copyContent();
                       }}
                       className="w-full bg-violet-800 text-white p-1 rounded-md"
                     >
-                      {t("form-copy")}
+                      {copyButton}
                     </button>
                   </>
                 ) : (
