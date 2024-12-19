@@ -8,7 +8,7 @@ export default function Home() {
   const [userUrl, setUserUrl] = useState("");
   const [shortenedUrl, setShortenedUrl] = useState("");
   const [message, setMessage] = useState("");
-  const linkiooURL = "https://lkoo.xyz"
+  const linkiooURL = "https://lkoo.xyz";
 
   function messageBox(message: string) {
     setMessage(message);
@@ -129,14 +129,19 @@ export default function Home() {
 
                 {/* Url result */}
                 {shortenedUrl ? (
-                  <div
-                    onClick={() => {
-                      navigator.clipboard.writeText(shortenedUrl);
-                    }}
-                    className="w-full border-2 border-violet-80 p-1 rounded-md bg-slate-500/20 hover:bg-slate-500/40 text-slate-600"
-                  >
-                    {shortenedUrl}
-                  </div>
+                  <>
+                    <div className="w-full border-2 border-violet-80 p-1 rounded-md bg-slate-500/20 hover:bg-slate-500/40 text-[--foreground]">
+                      {shortenedUrl}
+                    </div>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(shortenedUrl);
+                      }}
+                      className="w-full bg-violet-800 text-white p-1 rounded-md"
+                    >
+                      {t("form-copy")}
+                    </button>
+                  </>
                 ) : (
                   ""
                 )}
