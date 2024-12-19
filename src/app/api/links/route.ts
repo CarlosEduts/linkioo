@@ -60,9 +60,9 @@ export async function POST(req: Request) {
       );
     }
 
-    if (link.length < 30) {
+    if (link.length < 31) {
       return NextResponse.json(
-        { error: "Your link must be longer than 20 characters." },
+        { error: "Your link must be longer than 30 characters." },
         { status: 400 }
       );
     }
