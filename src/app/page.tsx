@@ -9,6 +9,7 @@ export default function Home() {
   const [shortenedUrl, setShortenedUrl] = useState("");
   const [message, setMessage] = useState("");
   const [copyButton, setCopyButton] = useState(t("form-copy"));
+  const [key, setKey] = useState("");
   const linkiooURL = "https://lkoo.xyz";
 
   function messageBox(message: string) {
@@ -19,14 +20,34 @@ export default function Home() {
   function copyContent() {
     navigator.clipboard.writeText(shortenedUrl);
     setCopyButton(t("form-copied"));
-
     setTimeout(() => setCopyButton(t("form-copy")), 3000);
+  }
+
+  function generateKey(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    event.preventDefault();
+
+    const lenght = 8;
+    const chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-";
+    let generatedKey = "";
+
+    for (let i = 0; i < lenght; i++) {
+      const randomIndex = Math.floor(Math.random() * chars.length);
+      generatedKey += chars[randomIndex];
+    }
+
+    setKey(generatedKey);
   }
 
   async function handleShortenUrl(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!userUrl) {
+      messageBox("Both fields are required!");
+      return;
+    }
+
+    if (!key) {
       messageBox("Both fields are required!");
       return;
     }
@@ -39,7 +60,7 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ link: userUrl }),
+      body: JSON.stringify({ link: userUrl, key: key }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -127,6 +148,23 @@ export default function Home() {
                     value={userUrl}
                     className="w-full border-2 border-violet-80 p-1 rounded-md bg-slate-500/20"
                   />
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder={t("form-key")}
+                    onChange={(e) => setKey(e.target.value)}
+                    value={key}
+                    className="w-full border-2 border-violet-80 p-1 rounded-md bg-slate-500/20"
+                  />
+                  <button
+                    onClick={(event) => {
+                      generateKey(event);
+                    }}
+                    className="w-full bg-violet-800 text-white p-1 rounded-md"
+                  >
+                    {t("button-aleatory")}
+                  </button>
                   <button
                     type="submit"
                     className="w-full bg-violet-800 text-white p-1 rounded-md"

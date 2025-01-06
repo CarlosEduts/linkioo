@@ -4,6 +4,8 @@
     "price": "Preço",
     "subtitle": "Simplifique e compartilhe: seu encurtador de links rápido e confiável",
     "form-input": "Digite ou cole sua url aqui...",
+    "form-key": "Chave personalizada (deixe vazio para gerar uma aleatória)",
+    "button-aleatory": "Gerar chave aleatória",
     "form-button": "Encurtar URL",
     "form-result": "Link encurtado",
     "form-copy": "Copiar!",
@@ -13,6 +15,6 @@
     "language": "Idioma"
   },
   "Redirect": {
-    "title":"Redirecionando..."
+    "title": "Redirecionando..."
   }
 }

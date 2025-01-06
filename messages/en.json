@@ -4,6 +4,8 @@
     "price": "Price",
     "subtitle": "Simplify and share: your fast and reliable link shortener",
     "form-input": "Type or paste your URL here...",
+    "form-key": "Custom key (leave blank to generate a random one)",
+    "button-aleatory": "Generate random key",
     "form-button": "Shorten URL",
     "form-result": "Shortened link",
     "form-copy": "Copy!",

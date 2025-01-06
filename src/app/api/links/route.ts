@@ -36,28 +36,11 @@ export async function POST(req: Request) {
   await dbConnect();
   console.log("User connected.");
 
-  function generateKey(lenght: number): string {
-    const chars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-";
-    let key = "";
-
-    for (let i = 0; i < lenght; i++) {
-      const randomIndex = Math.floor(Math.random() * chars.length);
-      key += chars[randomIndex];
-    }
-
-    return key;
-  }
-
   try {
-    const { link } = await req.json();
-    const key = generateKey(8);
+    const { link, key } = await req.json();
 
-    if (!key || !link) {
-      return NextResponse.json(
-        { error: "Title are required" },
-        { status: 400 }
-      );
+    if (!link || !key) {
+      return NextResponse.json({ error: "URL are required" }, { status: 400 });
     }
 
     if (link.length < 31) {
@@ -77,7 +60,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Error saving link:", error);
     return NextResponse.json(
-      { error: "Failed to create link" },
+      { error: "Failed to create link (Key already exists)" },
       { status: 500 }
     );
   }
