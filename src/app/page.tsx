@@ -1,14 +1,33 @@
 "use client";
+import * as React from "react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Home() {
   const t = useTranslations("Home");
   const [userUrl, setUserUrl] = useState("");
   const [shortenedUrl, setShortenedUrl] = useState("");
   const [message, setMessage] = useState("");
-  const [copyButton, setCopyButton] = useState(t("form-copy"));
+  const [copyButton, setCopyButton] = useState(t("button-copy"));
   const [key, setKey] = useState("");
   const linkiooURL = "https://lkoo.xyz";
 
@@ -19,8 +38,8 @@ export default function Home() {
 
   function copyContent() {
     navigator.clipboard.writeText(shortenedUrl);
-    setCopyButton(t("form-copied"));
-    setTimeout(() => setCopyButton(t("form-copy")), 3000);
+    setCopyButton(t("button-copied"));
+    setTimeout(() => setCopyButton(t("button-copy")), 3000);
   }
 
   function generateKey(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -42,18 +61,13 @@ export default function Home() {
   async function handleShortenUrl(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!userUrl) {
-      messageBox("Both fields are required!");
-      return;
-    }
-
-    if (!key) {
-      messageBox("Both fields are required!");
+    if (!userUrl || !key) {
+      messageBox(t("form-message"));
       return;
     }
 
     // Indicador de link em processamento
-    setShortenedUrl(" . . .");
+    setShortenedUrl(t("input-link-being-processed"));
 
     fetch("/api/links", {
       method: "POST",
@@ -74,152 +88,157 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center px-4 pb-8">
-      <div className="w-full max-w-[800px]">
+      <div className="w-full max-w-3xl">
         {/* Header */}
-        <header className="flex items-center justify-between h-20 mb-4">
-          {/* Header Logo */}
-          <div className="flex items-center justify-center gap-1">
-            <Image
-              src="/Linkioo-logo.png"
-              width={80}
-              height={80}
-              alt="Linkioo"
-              className="w-10 rounded-lg"
-            />
-          </div>
-
-          {/* Header Links */}
-          <ul className="flex item-center gap-4">
-            <li>
-              <a href="#about">{t("about")}</a>
-            </li>
-            <li>
-              <a href="#price">{t("price")}</a>
-            </li>
-          </ul>
+        <header className="flex items-center justify-center h-20 mb-4">
+          <Image
+            src="/Linkioo-logo.png"
+            width={200}
+            height={100}
+            alt="Linkioo"
+            className="w-10"
+          />
+          <Image
+            src="/Linkioo-text.png"
+            width={200}
+            height={100}
+            alt="Linkioo"
+            className="w-24"
+          />
         </header>
 
-        {/* Main */}
-        <main className="flex flex-col">
-          {/* Title and subtitle / Form*/}
-          <div className="flex flex-col text-center gap-4 px-4 py-8  bg-slate-400/15 rounded-md">
-            <div className="flex gap-1 items-center justify-center">
-              <Image
-                src="/Linkioo-logo.png"
-                width={200}
-                height={100}
-                alt="Linkioo"
-                className="w-14 rounded-lg"
-              />
-              <Image
-                src="/Linkioo-text.png"
-                width={200}
-                height={100}
-                alt="Linkioo"
-                className="w-28 rounded-lg"
-              />
-            </div>
-            <div className="flex items-center justify-center">
-              <p className="max-w-80">{t("subtitle")}</p>
-            </div>
+        {/* Form */}
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>{t("title")}</CardTitle>
+            <CardDescription>{t("subtitle")}</CardDescription>
+          </CardHeader>
 
-            {/* Form */}
-            <div className="flex items-center flex-col">
-              <div className="flex items-center flex-col gap-3 justify-center w-full max-w-96 px-2 py-4 border border-[--foreground] rounded-md">
-                {/* Error result */}
+          <CardContent>
+            <form onSubmit={handleShortenUrl}>
+              <div className="grid w-full items-center gap-4">
+                {/* Error message */}
                 {message ? (
-                  <div className="w-full p-1 rounded-md bg-red-500/20 text-red-600">
-                    {message}
+                  <div className="flex flex-col">
+                    <div className="w-full p-1.5 rounded-md bg-red-500/20 text-red-600">
+                      {message}
+                    </div>
                   </div>
                 ) : (
                   ""
                 )}
 
-                <form
-                  onSubmit={handleShortenUrl}
-                  className="flex flex-col gap-3 w-full "
-                >
-                  <input
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="url">{t("form-url-label")}</Label>
+                  <Input
+                    id="url"
                     type="url"
-                    name=""
-                    id=""
-                    placeholder={t("form-input")}
+                    placeholder={t("form-url-input")}
                     onChange={(e) => setUserUrl(e.target.value)}
                     value={userUrl}
-                    className="w-full border-2 border-violet-80 p-1 rounded-md bg-slate-500/20"
                   />
-                  <input
-                    type="text"
-                    name=""
-                    id=""
-                    placeholder={t("form-key")}
+                </div>
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="key">{t("form-key-label")}</Label>
+                  <Input
+                    id="key"
+                    placeholder={t("form-key-input")}
                     onChange={(e) => setKey(e.target.value)}
                     value={key}
-                    className="w-full border-2 border-violet-80 p-1 rounded-md bg-slate-500/20"
                   />
-                  <button
+                </div>
+                <div className="flex flex-col space-y-1.5">
+                  <Button
                     onClick={(event) => {
                       generateKey(event);
                     }}
-                    className="w-full bg-violet-800 text-white p-1 rounded-md"
+                    variant="outline"
                   >
-                    {t("button-aleatory")}
-                  </button>
-                  <button
-                    type="submit"
-                    className="w-full bg-violet-800 text-white p-1 rounded-md"
-                  >
-                    {t("form-button")}
-                  </button>
-                </form>
-
-                {/* Url result */}
-                {shortenedUrl ? (
-                  <>
-                    <div className="w-full border-2 border-violet-80 p-1 rounded-md bg-slate-500/20 hover:bg-slate-500/40 text-[--foreground]">
-                      {shortenedUrl}
-                    </div>
-                    <button
-                      onClick={() => {
-                        copyContent();
-                      }}
-                      className="w-full bg-violet-800 text-white p-1 rounded-md"
-                    >
-                      {copyButton}
-                    </button>
-                  </>
-                ) : (
-                  ""
-                )}
+                    {t("button-key-aleatory")}
+                  </Button>
+                  <Button type="submit" className="text-white">
+                    {t("button-submit")}
+                  </Button>
+                </div>
               </div>
-            </div>
-          </div>
+            </form>
+          </CardContent>
 
-          {/* Infos */}
-          <div className="flex flex-col items-center justify-center">
-            {/* About project */}
-            <div
-              className="mt-8 w-full  px-4 py-8  bg-slate-400/15 rounded-md"
-              id="about"
-            >
-              <div>
-                <h2 className="text-xl font-bold">{t("about")}</h2>
-                <p className="opacity-60">{t("about-content")}</p>
+          {/* Url result */}
+          {shortenedUrl ? (
+            <CardFooter className="flex justify-between">
+              <div className="flex w-full items-center space-x-2">
+                <Input value={shortenedUrl} disabled />
+                <Button
+                  className="text-white"
+                  onClick={() => {
+                    copyContent();
+                  }}
+                >
+                  {copyButton}
+                </Button>
               </div>
-            </div>
+            </CardFooter>
+          ) : (
+            ""
+          )}
+        </Card>
 
-            {/* Price */}
-            <div
-              className="mt-8 w-full px-4 py-8  bg-slate-400/15 rounded-md"
-              id="price"
-            >
-              <div>
-                <h2 className="text-xl font-bold">{t("price")}</h2>
-                <p className="opacity-60">{t("price-content")}</p>
-              </div>
-            </div>
-          </div>
-        </main>
+        {/* FAQ */}
+        <div className="rounded-xl border bg-card text-card-foreground shadow p-6 mt-8">
+          <h2 className="font-bold">{t("about-title")}</h2>
+
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>{t("question-1-title")}</AccordionTrigger>
+              <AccordionContent>{t("question-1-paragraph")}</AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2">
+              <AccordionTrigger>{t("question-2-title")}</AccordionTrigger>
+              <AccordionContent>{t("question-2-paragraph")}</AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3">
+              <AccordionTrigger>{t("question-3-title")}</AccordionTrigger>
+              <AccordionContent>{t("question-3-paragraph")}</AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4">
+              <AccordionTrigger>{t("question-4-title")}</AccordionTrigger>
+              <AccordionContent>{t("question-4-paragraph")}</AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-5">
+              <AccordionTrigger>{t("question-5-title")}</AccordionTrigger>
+              <AccordionContent>{t("question-5-paragraph")}</AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-6">
+              <AccordionTrigger>{t("question-6-title")}</AccordionTrigger>
+              <AccordionContent>{t("question-6-paragraph")}</AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-7">
+              <AccordionTrigger>{t("question-7-title")}</AccordionTrigger>
+              <AccordionContent>{t("question-7-paragraph")}</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+
+        {/* footer */}
+        <footer className="flex items-center gap-2 justify-center h-20 mt-4">
+          <a href="https://www.carlosdev.top/" className="opacity-80">
+            {t("developer-link")}
+          </a>
+          |
+          <a
+            href="https://github.com/CarlosEduts/linkioo"
+            className="opacity-80"
+          >
+            {t("github-link")}
+          </a>
+        </footer>
       </div>
     </div>
   );

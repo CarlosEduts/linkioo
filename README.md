@@ -1,6 +1,5 @@
 # Linkioo - Encurtador de Links
 
-
 Linkioo é um encurtador de links simples, rápido e eficiente. Com ele, você pode transformar URLs longas em links curtos e fáceis de compartilhar.
 
 ## 🌐 Demonstração
@@ -20,7 +19,8 @@ Veja a aplicação em funcionamento aqui: **[www.lkoo.xyz](https://www.lkoo.xyz/
 
 O projeto utiliza as seguintes tecnologias:
 
-- **Next.js**, **TypeScript**, **next-intl(Idiomas: EN, PT)**, **MongoDB Atlas**, **TailwindCSS**, **Vercel**
+- **Next.js**, **TypeScript**, **next-intl(Idiomas: EN, PT)**, **MongoDB Atlas**, **TailwindCSS**, **shadcn/ui**, **Vercel**.
+
 ---
 
 ## 👨‍💻 Desenvolvedor

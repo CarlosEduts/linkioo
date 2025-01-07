@@ -2,25 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   transition: all 200ms;
 }
 
 html {
   font-size: 16px;
+}
+
+@layer base {
+  :root {
+    --background: 240 15% 98%; /* Um fundo suave e claro */
+    --foreground: 240 15% 20%; /* Texto em roxo mais escuro */
+    --card: 240 15% 98%; /* Cartões em tom claro */
+    --card-foreground: 240 15% 20%; /* Texto do cartão em roxo escuro */
+    --popover: 240 15% 98%; /* Popovers claros */
+    --popover-foreground: 240 15% 20%; /* Texto no popover */
+    --primary: 270 50% 40%; /* Cor principal roxa */
+    --primary-foreground: 0 0% 98%; /* Texto primário branco */
+    --secondary: 270 20% 80%; /* Cor secundária mais suave */
+    --secondary-foreground: 240 15% 20%; /* Texto secundário em roxo escuro */
+    --muted: 270 20% 85%; /* Cor atenuada, mais clara */
+    --muted-foreground: 240 15% 40%; /* Texto atenuado em roxo suave */
+    --accent: 270 40% 60%; /* Cor de destaque suave em roxo */
+    --accent-foreground: 0 0% 98%; /* Texto de destaque branco */
+    --destructive: 0 84.2% 60.2%; /* Cor destrutiva (vermelha) */
+    --destructive-foreground: 0 0% 98%; /* Texto destrutivo branco */
+    --border: 240 20% 85%; /* Bordas suaves */
+    --input: 240 15% 90%; /* Campo de input claro */
+    --ring: 240 20% 70%; /* Anel de foco suave */
+    --chart-1: 270 50% 60%; /* Gráfico 1 em roxo suave */
+    --chart-2: 290 40% 55%; /* Gráfico 2 em roxo mais suave */
+    --chart-3: 340 50% 60%; /* Gráfico 3 em roxo/rosa */
+    --chart-4: 250 60% 65%; /* Gráfico 4 com tonalidade mais fria */
+    --chart-5: 280 40% 70%; /* Gráfico 5 com mais contraste roxo */
+    --radius: 0.5rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 240 15% 20%; /* Fundo escuro roxo */
+    --foreground: 0 0% 98%; /* Texto claro */
+    --card: 240 15% 20%; /* Cartões escuros */
+    --card-foreground: 0 0% 98%; /* Texto de cartão claro */
+    --popover: 240 15% 20%; /* Popovers escuros */
+    --popover-foreground: 0 0% 98%; /* Texto popover claro */
+    --primary: 270 50% 50%; /* Cor primária roxa no modo escuro */
+    --primary-foreground: 240 15% 10%; /* Texto primário em roxo mais escuro */
+    --secondary: 270 30% 40%; /* Cor secundária mais profunda */
+    --secondary-foreground: 240 15% 90%; /* Texto secundário claro */
+    --muted: 270 30% 45%; /* Cor atenuada mais forte */
+    --muted-foreground: 240 15% 80%; /* Texto atenuado claro */
+    --accent: 270 50% 50%; /* Cor de destaque em modo escuro */
+    --accent-foreground: 0 0% 98%; /* Texto de destaque claro */
+    --destructive: 0 62.8% 30.6%; /* Cor destrutiva vermelha */
+    --destructive-foreground: 0 0% 98%; /* Texto destrutivo branco */
+    --border: 240 20% 40%; /* Bordas escuras */
+    --input: 240 15% 25%; /* Campo de input escuro */
+    --ring: 240 30% 60%; /* Anel de foco mais destacado */
+    --chart-1: 270 50% 60%; /* Gráfico 1 em roxo suave */
+    --chart-2: 290 40% 55%; /* Gráfico 2 em roxo mais suave */
+    --chart-3: 340 50% 60%; /* Gráfico 3 em roxo/rosa */
+    --chart-4: 250 60% 65%; /* Gráfico 4 com tonalidade mais fria */
+    --chart-5: 280 40% 70%; /* Gráfico 5 com mais contraste roxo */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

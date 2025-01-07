@@ -3,14 +3,16 @@ import mongoose from "mongoose";
 const MONGO_URI = process.env.MONGO_URI || "";
 
 if (!MONGO_URI) {
-  throw new Error("Please define the MONGO_URI environment variable in .env.local");
+  throw new Error(
+    "Please define the MONGO_URI environment variable in .env.local"
+  );
 }
 
 // @ts-ignore
 let cached = global.mongoose;
 
 if (!cached) {
-    // @ts-ignore
+  // @ts-ignore
   cached = global.mongoose = { conn: null, promise: null };
 }
 
