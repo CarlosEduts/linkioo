@@ -4,7 +4,7 @@ Linkioo é um encurtador de links simples, rápido e eficiente. Com ele, você p
 
 ## 🌐 Demonstração
 
-Veja a aplicação em funcionamento aqui: **[www.lkoo.xyz](https://www.lkoo.xyz/)**
+ℹ️ O projeto não está mais disponível em deploy. Sinta-se à vontade para clonar este repositório e hospedá-lo por conta própria!
 
 ---
 
@@ -28,18 +28,6 @@ O projeto utiliza as seguintes tecnologias:
 - **Carlos**  
   LinkedIn: [carlos-eduardo](https://www.linkedin.com/in/carlos-eduardo-464206336/)  
   GitHub: [CarlosEduts](https://github.com/CarlosEduts)
-
----
-
-## ✨ Contribuição
-
-Ficarei feliz em receber contribuições para este projeto! Siga as etapas:
-
-1. **Fork** o repositório.
-2. Crie uma nova branch com sua feature/bugfix.
-3. Commit suas mudanças.
-4. Envie suas mudanças.
-5. Abra um **Pull Request**.
 
 ---
 
